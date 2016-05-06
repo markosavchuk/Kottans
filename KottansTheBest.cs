@@ -26,7 +26,8 @@ namespace TestTask
                 {
                     CreditCardVendor.AmericanExpress, new List<Tuple<string, string>>()
                     {
-                        new Tuple<string, string>("34", "37")
+                        new Tuple<string, string>("34", "34"),
+                        new Tuple<string, string>("37", "37")
                     }
                 },
                 {
@@ -109,8 +110,12 @@ namespace TestTask
                     normilizeCreditCard = (++number).ToString();
                 else
                     return "invalid credit card number";
-            } while (!IsCreditCardNumberValid(normilizeCreditCard));       
-            return normilizeCreditCard;
+            } while (!IsCreditCardNumberValid(normilizeCreditCard));
+            if (GetCreditCardVendor(creditCard) == GetCreditCardVendor(normilizeCreditCard))
+                return normilizeCreditCard;
+            else
+                return
+                    "No more card numbers available for this vendor.";
         }
     }
 }

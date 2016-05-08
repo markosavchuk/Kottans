@@ -59,6 +59,9 @@ namespace TestTask
 
             var normilizeCreditCard = creditCard.Replace(" ", "");
 
+            if (!IsCreditCardNumberValid(normilizeCreditCard))
+                return CreditCardVendor.Unknown;
+
             foreach (var vendor in IIN)
             {
                 foreach (var number in vendor.Value)
@@ -115,7 +118,7 @@ namespace TestTask
                 return normilizeCreditCard;
             else
                 return
-                    "No more card numbers available for this vendor.";
+                    "No more card numbers available for this vendor or invalid credit card number.";
         }
     }
 }

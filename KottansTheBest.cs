@@ -19,42 +19,64 @@ namespace TestTask
             Unknown
         }
 
+        class Vendor
+        {
+            public CreditCardVendor NameVendor;
+            public List<Tuple<string, string>> IinRanges = new List<Tuple<string, string>>();
+            public List<int> AvailableLength = new List<int>(); 
+        }
+
         public CreditCardVendor GetCreditCardVendor(string creditCard)
         {
-            var IIN = new Dictionary<CreditCardVendor, List<Tuple<string, string>>>
+            var vendors = new List<Vendor>()
             {
+                new Vendor()
                 {
-                    CreditCardVendor.AmericanExpress, new List<Tuple<string, string>>()
+                    NameVendor = CreditCardVendor.AmericanExpress,
+                    AvailableLength = new List<int>() {15},
+                    IinRanges = new List<Tuple<string, string>>()
                     {
                         new Tuple<string, string>("34", "34"),
                         new Tuple<string, string>("37", "37")
                     }
                 },
+                new Vendor()
                 {
-                    CreditCardVendor.Maestro, new List<Tuple<string, string>>()
+                    NameVendor = CreditCardVendor.Maestro,
+                    AvailableLength = new List<int>() {12,13,14,15,16,17,18,19},
+                    IinRanges = new List<Tuple<string, string>>()
                     {
                         new Tuple<string, string>("50", "50"),
                         new Tuple<string, string>("56", "69")
                     }
                 },
+                new Vendor()
                 {
-                    CreditCardVendor.MasterCard, new List<Tuple<string, string>>()
+                    NameVendor = CreditCardVendor.MasterCard,
+                    AvailableLength = new List<int>() {16},
+                    IinRanges = new List<Tuple<string, string>>()
                     {
                         new Tuple<string, string>("51", "55")
                     }
                 },
+                new Vendor()
                 {
-                    CreditCardVendor.VISA, new List<Tuple<string, string>>()
+                    NameVendor = CreditCardVendor.VISA,
+                    AvailableLength = new List<int>() {13,16,19},
+                    IinRanges = new List<Tuple<string, string>>()
                     {
                         new Tuple<string, string>("4", "4")
                     }
                 },
+                new Vendor()
                 {
-                    CreditCardVendor.JCB, new List<Tuple<string, string>>()
+                    NameVendor = CreditCardVendor.JCB,
+                    AvailableLength = new List<int>() {16},
+                    IinRanges = new List<Tuple<string, string>>()
                     {
                         new Tuple<string, string>("3528", "3589")
                     }
-                }
+                },
             };
 
             var normilizeCreditCard = creditCard.Replace(" ", "");
@@ -62,14 +84,17 @@ namespace TestTask
             if (!IsCreditCardNumberValid(normilizeCreditCard))
                 return CreditCardVendor.Unknown;
 
-            foreach (var vendor in IIN)
+            foreach (var vendor in vendors)
             {
-                foreach (var number in vendor.Value)
+                foreach (var number in vendor.IinRanges)
                 {
                     var iinCard = normilizeCreditCard.Substring(0, number.Item2.Length);
                     if (int.Parse(iinCard)>=int.Parse(number.Item1) 
                         && int.Parse(iinCard)<=int.Parse(number.Item2))
-                        return vendor.Key;
+                        return 
+                            vendor.AvailableLength.Contains(normilizeCreditCard.Length)
+                            ? vendor.NameVendor
+                            : CreditCardVendor.Unknown;
                 }
             }
 
@@ -118,7 +143,7 @@ namespace TestTask
                 return normilizeCreditCard;
             else
                 return
-                    "No more card numbers available for this vendor or invalid credit card number.";
+                    "No more card numbers available for this vendor in this range or invalid credit card number.";
         }
     }
 }

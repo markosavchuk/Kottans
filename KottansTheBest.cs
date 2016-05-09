@@ -26,9 +26,11 @@ namespace TestTask
             public List<int> AvailableLength = new List<int>(); 
         }
 
-        public CreditCardVendor GetCreditCardVendor(string creditCard, bool ckeckValidation = true)
+        private static List<Vendor> _vendors;
+
+        public KottansTheBest()
         {
-            var vendors = new List<Vendor>()
+            _vendors = new List<Vendor>()
             {
                 new Vendor()
                 {
@@ -78,14 +80,17 @@ namespace TestTask
                     }
                 },
             };
+        }
 
+        public CreditCardVendor GetCreditCardVendor(string creditCard, bool ckeckValidation = true)
+        {
             var normilizeCreditCard = creditCard.Replace(" ", "");
 
             if (ckeckValidation)
                 if (!IsCreditCardNumberValid(normilizeCreditCard))
                     return CreditCardVendor.Unknown;
 
-            foreach (var vendor in vendors)
+            foreach (var vendor in _vendors)
             {
                 foreach (var number in vendor.IinRanges)
                 {

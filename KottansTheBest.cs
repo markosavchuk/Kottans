@@ -26,7 +26,7 @@ namespace TestTask
             public List<int> AvailableLength = new List<int>(); 
         }
 
-        public CreditCardVendor GetCreditCardVendor(string creditCard)
+        public CreditCardVendor GetCreditCardVendor(string creditCard, bool ckeckValidation = true)
         {
             var vendors = new List<Vendor>()
             {
@@ -81,8 +81,9 @@ namespace TestTask
 
             var normilizeCreditCard = creditCard.Replace(" ", "");
 
-            if (!IsCreditCardNumberValid(normilizeCreditCard))
-                return CreditCardVendor.Unknown;
+            if (ckeckValidation)
+                if (!IsCreditCardNumberValid(normilizeCreditCard))
+                    return CreditCardVendor.Unknown;
 
             foreach (var vendor in vendors)
             {
@@ -104,6 +105,10 @@ namespace TestTask
         public bool IsCreditCardNumberValid(string creditCard)
         {
             var normilizeCreditCard = creditCard.Replace(" ", "");
+
+            if (GetCreditCardVendor(normilizeCreditCard, false) == CreditCardVendor.Unknown)
+                return false;
+
             int sum = 0;
             for (int i = 0; i < normilizeCreditCard.Length; i++)
             {
@@ -130,6 +135,10 @@ namespace TestTask
         public string GenerateNextCreditCardNumber(string creditCard)
         {
             var normilizeCreditCard = creditCard.Replace(" ", "");
+
+            if (GetCreditCardVendor(normilizeCreditCard) == CreditCardVendor.Unknown)
+                return "Unknown credit card vendor.";
+
             do
             {
                 UInt64 number;
@@ -139,6 +148,7 @@ namespace TestTask
                 else
                     return "invalid credit card number";
             } while (!IsCreditCardNumberValid(normilizeCreditCard));
+
             if (GetCreditCardVendor(creditCard) == GetCreditCardVendor(normilizeCreditCard))
                 return normilizeCreditCard;
             else

@@ -1,0 +1,5 @@
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens\bin\Debug\Citizens.dll
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens\bin\Debug\Citizens.pdb
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens\obj\Debug\Citizens.csprojResolveAssemblyReference.cache
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens\obj\Debug\Citizens.dll
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens\obj\Debug\Citizens.pdb

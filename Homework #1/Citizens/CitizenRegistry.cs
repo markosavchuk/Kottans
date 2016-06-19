@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Citizens
 {
@@ -15,7 +9,7 @@ namespace Citizens
         private int _registeredMan = 0;
         private int _registeredWoman = 0;
        
-        private ICitizen[] _registartions = new ICitizen[100];
+        private readonly ICitizen[] _registartions = new ICitizen[100];
         private DateTime _lastRegistration;
 
         public void Register(ICitizen citizen)
@@ -86,33 +80,6 @@ namespace Citizens
             }
 
             return x%11%10;
-        }
-    }
-
-    public static class DateTimeExtensions
-    {
-        public static string ToFriendlyDateString(this DateTime Date)
-        {
-            string FormattedDate = "";
-            if (Date.Date == SystemDateTime.Now.Invoke().Date)
-            {
-                FormattedDate = "today";
-            }
-            else if (Date.Date == SystemDateTime.Now.Invoke().AddDays(-1))
-            {
-                FormattedDate = "yesterday";
-            }
-            else if (Date.Date > SystemDateTime.Now.Invoke().AddDays(-6))
-            {
-                // *** Show the Day of the week
-                FormattedDate = Date.ToString("dddd").ToString();
-            }
-            else
-            {
-                FormattedDate = Date.ToString("MMMM dd, yyyy");
-            }
-
-            return FormattedDate;
         }
     }
 }

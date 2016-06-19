@@ -34,15 +34,6 @@ namespace Citizens
             VatId = id;
         }
 
-        /*public Citizen(DateTime dateOfBirth, Gender gender)
-        {
-            CheckDate(dateOfBirth);
-            BirthDate = dateOfBirth;
-
-            CheckGender(gender);
-            Gender = gender;
-        }*/
-
         private void CheckDate(DateTime dt)
         {
             if (dt.CompareTo(SystemDateTime.Now.Invoke()) > 0)

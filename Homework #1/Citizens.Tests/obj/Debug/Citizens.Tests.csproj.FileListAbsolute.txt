@@ -1,1 +1,8 @@
 C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\obj\Debug\Citizens.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\bin\Debug\Citizens.Tests.dll
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\bin\Debug\Citizens.Tests.pdb
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\bin\Debug\Citizens.dll
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\bin\Debug\Citizens.pdb
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\obj\Debug\Citizens.Tests.dll
+C:\Users\Marko\Desktop\Kottans\repo\Homework #1\Citizens.Tests\obj\Debug\Citizens.Tests.pdb
